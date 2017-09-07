@@ -1,11 +1,8 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using SQLite;
+using System.IO;
 
 namespace SqlLiteDemo.Droid
 {
@@ -22,6 +19,14 @@ namespace SqlLiteDemo.Droid
       global::Xamarin.Forms.Forms.Init(this, bundle);
       LoadApplication(new App());
     }
+
+    public SQLiteConnection GetConnection()
+    {
+      var sqliteFilename = "StageXTraining.db";
+      string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+      var path = Path.Combine(documentPath, sqliteFilename);
+      var conn = new SQLite.SQLiteConnection(path);
+      return conn;
+    }
   }
 }
-
