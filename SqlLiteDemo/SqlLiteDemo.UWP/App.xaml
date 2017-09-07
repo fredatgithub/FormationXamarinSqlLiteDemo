@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="SqlLiteDemo.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SqlLiteDemo.UWP"
+    RequestedTheme="Light">
+
+</Application>
