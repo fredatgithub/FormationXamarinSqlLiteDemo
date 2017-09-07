@@ -58,5 +58,36 @@ namespace SqlLiteDemo
       }
 
     }
+
+    private void BtnDisplayCourse_OnClicked(object sender, EventArgs e)
+    {
+      
+    }
+
+    private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+    {
+      if (database != null)
+      {
+        var result = await DisplayAlert("Suppression", "voulez-vous supprimer le stage ?", "Accept", "Annule");
+        if (result)
+        {
+          lock (locker)
+          {
+            var img = sender as Image;
+            var gest = img.GestureRecognizers[0] as TapGestureRecognizer;
+            var id = Convert.ToInt32(gest.TappedCallbackParameter);
+            var stage = (from s in database.Table<Stage>() where s.Id == id select s).First();
+            var res = database.Delete<Stage>(id);
+            if (res > 0)
+            {
+              var msg = $"Stage {stage.Name} supprimé";
+              DisplayAlert("Suppression", msg, "ok");
+              var query = "Select * from Stage";
+              listStages.ItemsSource = database.Query<Stage>(query).ToList();
+            }
+          }
+        }
+      }
+    }
   }
 }

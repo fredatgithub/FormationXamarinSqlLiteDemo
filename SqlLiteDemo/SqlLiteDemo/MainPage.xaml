@@ -14,15 +14,22 @@
       <Button x:Name="btnOpen"
             Clicked="BtnOpen_OnClicked"
             Text="Créer ou ouvrir la base Training - Table"/>
-      <Button x:Name="btnAddCourse" Clicked="BtnAddCourse_OnClicked"
-            Text="Ajouter un stage"/>
+      <Button x:Name="btnAddCourse" Clicked="BtnAddCourse_OnClicked" Text="Ajouter un stage"/>
+      <Button x:Name="btnDisplayCourse" Clicked="BtnDisplayCourse_OnClicked"  Text="Afficher les stages"/>
+
     </StackLayout>
     <ListView BackgroundColor="Beige" HasUnevenRows="True" x:Name="listStages" Grid.Row="1">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal">
-              <Image Source="{Binding Path=ImgPath}" Aspect="AspectFit"/>
+              <Image Source="{Binding Path=ImgPath}" Aspect="AspectFit">
+                <Image.GestureRecognizers>
+                  <TapGestureRecognizer NumberOfTapsRequired="2"
+                                        TappedCallbackParameter="{Binding Path=Id}"
+                                        Tapped="TapGestureRecognizer_OnTapped"/>
+                </Image.GestureRecognizers>
+              </Image>
               <Label FontSize="Large" Text="{Binding Path=Name}"/>
             </StackLayout>
           </ViewCell>
