@@ -61,7 +61,14 @@ namespace SqlLiteDemo
 
     private void BtnDisplayCourse_OnClicked(object sender, EventArgs e)
     {
-      
+      if (database != null)    
+      {
+        lock (locker)
+        {
+          var query = from s in database.Table<Stage>() select s;
+          listStages.ItemsSource = query.ToList();
+        }
+      }
     }
 
     private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
