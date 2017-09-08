@@ -1,9 +1,17 @@
-﻿using Android.App;
+﻿using System;
+
+using Android.App;
 using Android.Content.PM;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
 using Android.OS;
 using SQLite;
 using System.IO;
+using Xamarin.Forms;
 
+
+[assembly: Dependency(typeof(SqlLiteDemo.Droid.MainActivity))]
 namespace SqlLiteDemo.Droid
 {
   [Activity(Label = "SqlLiteDemo", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
